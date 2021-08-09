@@ -1,0 +1,58 @@
+<div class="card" [ngClass]="allCardColor()">
+  <div class="card__content">
+    <h2 [ngStyle]="{
+      opacity: title.length < 5 ? 0.8 : 1,
+      fontWeight: title.length < 5 ? 'normal' : 'bold'
+    }" [ngClass]="allCardColor()">{{title}}</h2>
+
+    <div [ngSwitch]="cardColor">
+      <p *ngSwitchCase="'red'">It is fire {{pet}}. Do you like to kindle like it?</p>
+      <p *ngSwitchCase="'blue'">It is winding {{pet}}. Do you like to fly like it?</p>
+      <p *ngSwitchCase="'green'">It is flouwers {{pet}}. Do you like to flouwer like it?</p>
+      <p *ngSwitchDefault>It is sunny {{pet}}. Do you like to sun like it?</p>
+    </div>
+
+    <div class="card__content-buttons">
+      <button (click)="changeTitle()">Lola</button>
+      <button (click)="title = 'Max'">Max</button>
+      <button (click)="title = 'Baris'">Baris</button>
+      <button (click)="title = 'Fluffy'">Fluffy</button>
+    </div>
+
+    <div class="card__content-inputs">
+      <!-- <input type="text" #myTitle (input)="inputHandler(myTitle.value)" [value]="title"> -->
+      <input type="text" [(ngModel)]="title">
+    </div>
+  </div>
+
+
+  <div class='card__image'>
+    <img [src]="myImgUrl" [ngClass]="allCardColor()">
+
+    <!-- <div class='card__image-button'>
+      <button class="button-color button-yellow" (click)="cardColor = 'yellow'" title="yellow"></button>
+      <button class="button-color button-blue" (click)="cardColor = 'blue'" title="blue"></button>
+      <button class="button-color button-red" (click)="cardColor = 'red'" title="red"></button>
+      <button class="button-color button-green" (click)="cardColor = 'green'" title="green"></button>
+    </div> -->
+
+
+    <form class='card__image-radio'>
+      <input type="radio" class="radio-color visually-hidden" id="radio-yellow-{{index}}" name="color{{index}}"
+        (click)="cardColor = 'yellow'" checked>
+      <label class="label-color label-yellow" for="radio-yellow-{{index}}" title="yellow"></label>
+
+      <input type="radio" class="radio-color visually-hidden" id="radio-blue-{{index}}" name="color{{index}}"
+        (click)="cardColor = 'blue'">
+      <label class="label-color label-blue" for="radio-blue-{{index}}" title="blue"></label>
+
+      <input type="radio" class="radio-color visually-hidden" id="radio-red-{{index}}" name="color{{index}}"
+        (click)="cardColor = 'red'">
+      <label class="label-color label-red" for="radio-red-{{index}}" title="red"></label>
+
+      <input type="radio" class="radio-color visually-hidden" id="radio-green-{{index}}" name="color{{index}}"
+        (click)="cardColor = 'green'">
+      <label class="label-color label-green" for="radio-green-{{index}}" title="green"></label>
+    </form>
+  </div>
+</div>
