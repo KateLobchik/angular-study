@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Card } from '../app.component';
 
 
@@ -11,12 +11,21 @@ import { Card } from '../app.component';
 
 export class CardComponent implements OnInit {
 
-  @Input() card: Card | null = null
-  @Input() index: number | null = null
-
+  @Input() card: Card | null = null;
+  @Input() index: number | null = null;
+  @Output() name = new EventEmitter<string>();
 
   cardColor = 'yellow'
-  title: any;
+
+  private _title = '';
+  set title(value: string) {
+    this._title = value;
+    this.name.emit(value)
+  }
+  get title() {
+    return this._title;
+  }
+
   myImgUrl: any;
   pet: any
 
@@ -25,7 +34,7 @@ export class CardComponent implements OnInit {
   ngOnInit() {
     this.pet = this.card?.pet;
     this.myImgUrl = this.card?.imageUrl;
-    this.title = 'Name your ' + this.pet;
+    this._title = 'Name your ' + this.pet;
   }
 
 

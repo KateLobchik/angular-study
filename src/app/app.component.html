@@ -5,11 +5,17 @@
   <button (click)="toggleCards()">Toggle cards</button>
   <hr>
 
-  <div class="card-wrapper" [hidden]="!toggle">
+  <!-- <div class="card-wrapper" [hidden]="!toggle">
     <app-card *ngFor="let newCard of cards; let ind=index" [card]="newCard" [index]="ind + 1"></app-card>
+  </div> -->
+
+  <div class="card-wrapper">
+    <ng-container *ngFor="let newCard of cards; let ind=index">
+      <app-card [hidden]="!hidden" [card]="newCard" [index]="ind + 1" (name)="updateName($event)"></app-card>
+    </ng-container>
   </div>
 
-  <div *ngIf="!toggle">
+  <div *ngIf="!hidden">
     <h2>Cards are hidden!</h2>
   </div>
 

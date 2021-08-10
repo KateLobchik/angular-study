@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 export interface Card {
-  imageUrl: string,
-  pet: string
+  imageUrl: string;
+  pet: string;
 }
 
 @Component({
@@ -14,12 +14,15 @@ export interface Card {
 
 export class AppComponent {
 
-  toggle = true
+  hidden = true;
 
   toggleCards() {
-    this.toggle = !this.toggle
+    this.hidden = !this.hidden;
   }
 
+  updateName(name: string) {
+    console.log(name);
+  }
 
   cards: Card[] = [
     {
