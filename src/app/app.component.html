@@ -5,12 +5,12 @@
   <button (click)="toggleCards()">Toggle cards</button>
   <hr>
 
-  <div class="card-wrapper" *ngIf="toggle; else NoCards">
+  <div class="card-wrapper" [hidden]="!toggle">
     <app-card *ngFor="let newCard of cards; let ind=index" [card]="newCard" [index]="ind + 1"></app-card>
   </div>
 
-  <ng-template #NoCards>
+  <div *ngIf="!toggle">
     <h2>Cards are hidden!</h2>
-  </ng-template>
+  </div>
 
 </div>
